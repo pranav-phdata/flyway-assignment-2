@@ -1,13 +1,9 @@
 name: CI_dev
-
 on:
     push:
         branches:
             - dev
-    
     workflow_dispatch:
-
-
 jobs:
     migrate:
         runs-on: ubuntu-latest
@@ -19,5 +15,5 @@ jobs:
             - name: Run flyway migrate
               run:
                 set JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
-                flyway -user="${{secrets.SNOWFLAKE_USER}}" -password="${{secrets.SNOWFLAKE_PASSWORD}}" -configFiles=configs/dev.conf -X migrate
+                flyway -user="${{secrets.SNOWFLAKE_USER}}" -password=${{secrets.SNOWFLAKE_PASSWORD}} -configFiles=configs/dev.conf migrate
               shell: bash
