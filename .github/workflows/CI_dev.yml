@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         environment: dev
         container:
-            image: boxfuse/flyway
+            image: flyway/flyway
         steps:
             - uses: actions/checkout@v3
             - name: Run flyway migrate
