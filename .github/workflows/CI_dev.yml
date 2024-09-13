@@ -15,7 +15,7 @@ jobs:
         container:
             image: flyway/flyway
         steps:
-            - uses: action/checkout@v3
+            - uses: actions/checkout@v3
             - name: Run flyway migrate
               run:
                 set JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
