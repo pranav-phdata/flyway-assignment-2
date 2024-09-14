@@ -1,0 +1,20 @@
+name: CI_uat
+on:
+    push:
+        branches:
+            - uat
+    workflow_dispatch:
+jobs:
+    migrate:
+        runs-on: ubuntu-latest
+        environment: uat
+        container:
+            image: flyway/flyway
+        steps:
+            - uses: actions/checkout@v3
+            - name: Run flyway migrate
+              run: |
+                    # Running flyway commands
+                    export JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
+                    flyway -user="${{ secrets.SNOWFLAKE_USER }}" -password=${{ secrets.SNOWFLAKE_PASSWORD }} -configFiles=configs/uat.conf migrate
+              shell: bash
