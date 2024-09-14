@@ -15,5 +15,5 @@ jobs:
             - name: Run flyway migrate
               run:
                 export JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
-                flyway -user={{secrets.SNOWFLAKE_USER}} -password={{secrets.SNOWFLAKE_PASSWORD}} -configFiles=configs/dev.conf migrate
+                flyway -user="${{ secrets.SNOWFLAKE_USER }}" -password=${{ secrets.SNOWFLAKE_PASSWORD }} -configFiles=configs/dev.conf migrate
               shell: bash
