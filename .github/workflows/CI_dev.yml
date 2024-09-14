@@ -13,8 +13,8 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Run flyway migrate
-              run:
-                # Running flyway commands
-                export JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
-                flyway -user="${{ secrets.SNOWFLAKE_USER }}" -password=${{ secrets.SNOWFLAKE_PASSWORD }} -configFiles=configs/dev.conf migrate
+              run: |
+                    # Running flyway commands
+                    export JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
+                    flyway -user="${{ secrets.SNOWFLAKE_USER }}" -password=${{ secrets.SNOWFLAKE_PASSWORD }} -configFiles=configs/dev.conf migrate
               shell: bash
